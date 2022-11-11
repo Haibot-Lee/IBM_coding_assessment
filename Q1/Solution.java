@@ -6,14 +6,20 @@ public class Solution {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int total = Integer.parseInt(scanner.nextLine());
-        String[] totalClose = scanner.nextLine().split(" ");
+        String[] totalShirts = scanner.nextLine().split(" ");
         int request = Integer.parseInt(scanner.nextLine());
-        String[] requestClose = scanner.nextLine().split(" ");
+        String[] requestShirts = scanner.nextLine().split(" ");
+
+//        if request more than total, print "No"
+        if (request > total) {
+            System.out.println("No");
+            System.exit(0);
+        }
 
 //        build the table of shops
         HashMap<Integer, Integer> totalMap = new HashMap<>();
         for (int i = 0; i < total; i++) {
-            int size = getSize(totalClose[i]);
+            int size = getSize(totalShirts[i]);
 
             if (totalMap.get(size) != null && totalMap.get(size) > 0) {
                 int num = totalMap.get(size) + 1;
@@ -25,7 +31,7 @@ public class Solution {
 
         String ans = "Yes";
         for (int i = 0; i < request; i++) {
-            int size = getSize(requestClose[i]);
+            int size = getSize(requestShirts[i]);
 
             boolean find = false;
             while (size <= 1001) {
